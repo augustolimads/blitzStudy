@@ -9,7 +9,8 @@
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "test": "jest",
     "test:watch": "jest --watch",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "gen": "blitz generate"
   },
   "prisma": {
     "schema": "db/schema.prisma"
@@ -27,15 +28,16 @@
     "@blitzjs/auth": "2.0.0-beta.4",
     "@blitzjs/next": "2.0.0-beta.4",
     "@blitzjs/rpc": "2.0.0-beta.4",
-    "@prisma/client": "4.0.0",
+    "@prisma/client": "4.3.1",
+    "D": "1.0.0",
     "blitz": "2.0.0-beta.4",
+    "final-form": "4.20.7",
     "next": "12.2.5",
-    "prisma": "4.0.0",
+    "prisma": "4.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "zod": "3.17.3",
-    "final-form": "4.20.7",
-    "react-final-form": "6.5.9"
+    "react-final-form": "6.5.9",
+    "zod": "3.17.3"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "12.0.8",
