@@ -10,7 +10,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "prepare": "husky install",
-    "gen": "blitz generate"
+    "gen": "blitz generate",
+    "migrate": "blitz prisma migrate"
   },
   "prisma": {
     "schema": "db/schema.prisma"

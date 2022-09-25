@@ -1,5 +1,5 @@
-import { NotFoundError } from "blitz"
 import { resolver } from "@blitzjs/rpc"
+import { NotFoundError } from "blitz"
 import db from "db"
 import { z } from "zod"
 
@@ -10,7 +10,7 @@ const GetQuestion = z.object({
 
 export default resolver.pipe(resolver.zod(GetQuestion), resolver.authorize(), async ({ id }) => {
   // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-  const question = await db.question.findFirst({ where: { id } })
+  const question = await db.question.findFirst({ where: { id }, include: { choices: true } })
 
   if (!question) throw new NotFoundError()
 

@@ -1,10 +1,11 @@
 import { Routes } from "@blitzjs/next"
-import Link from "next/link"
-import { useRouter } from "next/router"
 import { useMutation } from "@blitzjs/rpc"
 import Layout from "app/core/layouts/Layout"
+import { FORM_ERROR, QuestionForm } from "app/questions/components/QuestionForm"
 import createQuestion from "app/questions/mutations/createQuestion"
-import { QuestionForm, FORM_ERROR } from "app/questions/components/QuestionForm"
+import { CreateQuestion } from "app/questions/validations"
+import Link from "next/link"
+import { useRouter } from "next/router"
 
 const NewQuestionPage = () => {
   const router = useRouter()
@@ -16,11 +17,8 @@ const NewQuestionPage = () => {
 
       <QuestionForm
         submitText="Create Question"
-        // TODO use a zod schema for form validation
-        //  - Tip: extract mutation's schema into a shared `validations.ts` file and
-        //         then import and use it here
-        // schema={CreateQuestion}
-        // initialValues={{}}
+        schema={CreateQuestion}
+        initialValues={{ text: "", choices: [] }}
         onSubmit={async (values) => {
           try {
             const question = await createQuestionMutation(values)

@@ -1,11 +1,11 @@
-import { Suspense } from "react"
 import { Routes } from "@blitzjs/next"
-import Head from "next/head"
-import Link from "next/link"
 import { usePaginatedQuery } from "@blitzjs/rpc"
-import { useRouter } from "next/router"
 import Layout from "app/core/layouts/Layout"
 import getQuestions from "app/questions/queries/getQuestions"
+import Head from "next/head"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import { Suspense } from "react"
 
 const ITEMS_PER_PAGE = 100
 
@@ -27,8 +27,15 @@ export const QuestionsList = () => {
         {questions.map((question) => (
           <li key={question.id}>
             <Link href={Routes.ShowQuestionPage({ questionId: question.id })}>
-              <a>{question.name}</a>
+              <a>{question.text}</a>
             </Link>
+            <ul>
+              {question.choices.map((choice) => (
+                <li key={choice.id}>
+                  {choice.text} - {choice.votes} votes
+                </li>
+              ))}
+            </ul>
           </li>
         ))}
       </ul>

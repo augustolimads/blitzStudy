@@ -1,5 +1,5 @@
-import { paginate } from "blitz"
 import { resolver } from "@blitzjs/rpc"
+import { paginate } from "blitz"
 import db, { Prisma } from "db"
 
 interface GetQuestionsInput
@@ -18,7 +18,8 @@ export default resolver.pipe(
       skip,
       take,
       count: () => db.question.count({ where }),
-      query: (paginateArgs) => db.question.findMany({ ...paginateArgs, where, orderBy }),
+      query: (paginateArgs) =>
+        db.question.findMany({ ...paginateArgs, where, orderBy, include: { choices: true } }),
     })
 
     return {
