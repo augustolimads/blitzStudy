@@ -35,6 +35,12 @@ const UserInfo = () => {
             <strong>Questions</strong>
           </a>
         </Link>
+        <br />
+        <Link href={Routes.TodosPage()}>
+          <a href="button small">
+            <strong>Todos</strong>
+          </a>
+        </Link>
       </>
     )
   } else {
