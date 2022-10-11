@@ -57,13 +57,6 @@ model Token {
   @@unique([hashedToken, type])
 }
 
-// NOTE: It's highly recommended to use an enum for the token type
-//       but enums only work in Postgres.
-//       See: https://blitzjs.com/docs/database-overview#switch-to-postgre-sql
-// enum TokenType {
-//   RESET_PASSWORD
-// }
-
 model Question {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
@@ -83,4 +76,22 @@ model Choice {
   choice     Choice?  @relation("ChoiceToChoice", fields: [choiceId], references: [id])
   choiceId   Int?
   Choice     Choice[] @relation("ChoiceToChoice")
+}
+
+model Project {
+  id    Int    @id @default(autoincrement())
+  name  String
+  tasks Task[]
+}
+
+model Task {
+  id        Int     @id @default(autoincrement())
+  name      String
+  project   Project @relation(fields: [projectId], references: [id])
+  projectId Int
+}
+
+model Todo {
+  id   Int    @id @default(autoincrement())
+  name String
 }
